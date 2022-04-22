@@ -7,7 +7,7 @@
 
 const app = {
   app_id: 101537,
-  title: 'Campanhas e descontos',
+  title: 'Campanhas e descontos Teste',
   slug: 'campanhas-e-descontos',
   type: 'external',
   state: 'active',
