@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "",
-    "short_description": "",
-    "category": "tools"
+    "title": "Campanhas e descontos",
+    "short_description": "Regras de desconto via cupom, UTM ou kits de produtos",
+    "category": "sales"
   }
 }
