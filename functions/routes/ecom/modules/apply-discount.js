@@ -168,7 +168,7 @@ exports.post = ({ appSdk, admin }, req, res) => {
           let value = 0
           rule.product_ids.forEach(productId => {
             const item = params.items.find(item => productId === item.product_id)
-            if (item && item.flags && item.flags.includes('freebie')) {
+            if (item) {
               value += ecomUtils.price(item)
             }
           })
