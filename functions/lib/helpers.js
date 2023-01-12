@@ -62,7 +62,9 @@ const getValidDiscountRules = (discountRules, params, items) => {
               value += price * item.quantity
             }
           })
+          console.log('discount from kit only', value)
         }
+        console.log('Check value before cond', value)
         if (value) {
           if (rule.discount && rule.discount.value) {
             if (rule.discount.type === 'percentage') {
@@ -76,6 +78,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
             type: 'fixed',
             value
           }
+          console.log('i have value so:', JSON.stringify(rule) )
         }
       }
       if (!rule.discount || !rule.discount.value) {
