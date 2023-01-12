@@ -73,9 +73,10 @@ const getValidDiscountRules = (discountRules, params, items) => {
               value += rule.discount.value
             }
           }
+
           rule.discount = {
             ...rule.discount,
-            type: 'fixed',
+            type: rule && rule.discount && rule.discount.type || 'fixed',
             value
           }
           console.log('i have value so:', JSON.stringify(rule) )
