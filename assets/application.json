@@ -206,7 +206,7 @@
     },
     "product_kit_discounts": {
       "schema": {
-        "title": "Descontos \"compre junto\"",
+        "title": "Descontos 'compre junto'",
         "description": "Aplicar descontos por quantidade ou kits de produto(s). Para importação em massa, verifique a tabela https://bit.ly/2XikNGO",
         "type": "array",
         "items": {
@@ -243,7 +243,7 @@
             },
             "product_ids": {
               "title": "Lista de produtos do kit",
-              "description": "Produtos compondo o kit para desconto \"compre junto\" ou \"leve X pague Y\"",
+              "description": "Produtos compondo o kit para desconto 'compre junto' ou 'leve X pague Y'",
               "type": "array",
               "items": {
                 "type": "string",
@@ -258,6 +258,11 @@
               "default": 1,
               "minimum": 1,
               "maximum": 9999999
+            },
+            "same_product_quantity": {
+              "type": "boolean",
+              "title": "Checar quantidade de cada item",
+              "description": "Aplicar desconto no produto apenas se a quantidade mínima for satisfeita no mesmo item do carrinho"
             },
             "check_all_items": {
               "type": "boolean",
