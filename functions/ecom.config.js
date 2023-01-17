@@ -226,16 +226,16 @@ const app = {
             title: 'Desconto concedido',
             type: 'object',
             required: [
-              value'
+              'value'
               ],
             additionalProperties: false,
             properties: {
               apply_at: {
                 type: 'string',
                 enum: [
-                  total',
-                  subtotal',
-                  freight'
+                  'total',
+                  'subtotal',
+                  'freight'
                   ],
                 default: 'total',
                 title: 'Aplicar desconto em',
@@ -251,8 +251,8 @@ const app = {
               amount_field: {
                 type: 'string',
                 enum: [
-                  total',
-                  subtotal'
+                  'total',
+                  'subtotal'
                   ],
                 default: 'total',
                 title: 'Montante a validar',
@@ -261,8 +261,8 @@ const app = {
               type: {
                 type: 'string',
                 enum: [
-                  percentage',
-                  fixed'
+                  'percentage',
+                  'fixed'
                   ],
                 default: 'fixed',
                 title: 'Tipo de desconto',
@@ -317,7 +317,7 @@ const app = {
         type: 'object',
         title: 'Desconto por kit',
         required: [
-          product_ids'
+          'product_ids'
           ],
         additionalProperties: false,
         properties: {
@@ -398,16 +398,16 @@ const app = {
             title: 'Desconto predefinido',
             type: 'object',
             required: [
-              value'
+              'value'
               ],
             additionalProperties: false,
             properties: {
               apply_at: {
                 type: 'string',
                 enum: [
-                  total',
-                  subtotal',
-                  freight'
+                  'total',
+                  'subtotal',
+                  'freight'
                   ],
                 default: 'total',
                 title: 'Aplicar desconto em',
@@ -423,8 +423,8 @@ const app = {
               type: {
                 type: 'string',
                 enum: [
-                  percentage',
-                  fixed'
+                  'percentage',
+                  'fixed'
                   ],
                 default: 'fixed',
                 title: 'Tipo de desconto',
