@@ -140,168 +140,168 @@ const app = {
   admin_settings: {
     discount_rules: {
       schema: {
-        title: "Regras de desconto",
-        description: "Aplicar descontos com filtros por cupom, campanha UTM e/ou cliente. Para importação em massa, verifique a tabela https://bit.ly/3zRvONd",
-        type: "array",
+        title: 'Regras de desconto',
+        description: 'Aplicar descontos com filtros por cupom, campanha UTM e/ou cliente. Para importação em massa, verifique a tabela https://bit.ly/3zRvONd',
+        type: 'array',
         items: {
-          type: "object",
-          title: "Regra de desconto",
+          type: 'object',
+          title: 'Regra de desconto',
           required: [
-            "discount"
+            'discount'
           ],
           additionalProperties: false,
           properties: {
             label: {
-              type: "string",
+              type: 'string',
               maxLength: 100,
-              title: "Rótulo",
-              description: "Título (opcional) da promoção"
+              title: 'Rótulo',
+              description: 'Título (opcional) da promoção'
             },
             description: {
-              type: "string",
+              type: 'string',
               maxLength: 1000,
-              title: "Descrição",
-              description: "Texto com informações adicionais sobre a promoção"
+              title: 'Descrição',
+              description: 'Texto com informações adicionais sobre a promoção'
             },
             date_range: {
-              type: "object",
-            title: "Período de validade",
-            description: "Preencha para programar a oferta a datas de início e/ou fim",
+              type: 'object',
+            title: 'Período de validade',
+            description: 'Preencha para programar a oferta a datas de início e/ou fim',
             additionalProperties: false,
             properties: {
               start: {
-                type: "string",
-                format: "date-time",
-                title: "Início"
+                type: 'string',
+                format: 'date-time',
+                title: 'Início'
                 },
               end: {
-                type: "string",
-                format: "date-time",
-                title: "Encerramento"
+                type: 'string',
+                format: 'date-time',
+                title: 'Encerramento'
                 }
               }
             },
           discount_coupon: {
-            type: "string",
+            type: 'string',
             maxLength: 255,
-            title: "Cupom de desconto",
-            description: "Se preenchido, o desconto será aplicado apenas com a inserção do cupom"
+            title: 'Cupom de desconto',
+            description: 'Se preenchido, o desconto será aplicado apenas com a inserção do cupom'
             },
           utm_campaign: {
-            title: "Campanha UTM",
-            description: "Preencha para aplicar o desconto por campanha UTM (`utm_campaign`)",
-            type: "string",
+            title: 'Campanha UTM',
+            description: 'Preencha para aplicar o desconto por campanha UTM (`utm_campaign`)',
+            type: 'string',
             maxLength: 200
             },
           case_insensitive: {
-            type: "boolean",
-            title: "Case insensitive",
-            description: "Ative para não diferenciar letras maiúsculas e minúsculas no cupom ou campanha"
+            type: 'boolean',
+            title: 'Case insensitive',
+            description: 'Ative para não diferenciar letras maiúsculas e minúsculas no cupom ou campanha'
             },
           usage_limit: {
-            type: "integer",
+            type: 'integer',
             minimum: 1,
             maximum: 1000,
-            title: "Limite de uso por cliente",
-            description: "Limite opcional de aplicação do desconto para cada cliente"
+            title: 'Limite de uso por cliente',
+            description: 'Limite opcional de aplicação do desconto para cada cliente'
             },
           total_usage_limit: {
-            type: "integer",
+            type: 'integer',
             minimum: 1,
             maximum: 1000,
-            title: "Limite de uso total",
-            description: "Limite opcional de aplicação do desconto até desativá-lo"
+            title: 'Limite de uso total',
+            description: 'Limite opcional de aplicação do desconto até desativá-lo'
             },
           customer_ids: {
-            title: "Lista de clientes selecionados",
-            description: "Se preenchido, o desconto será disponibilizado apenas para estes clientes",
-            type: "array",
+            title: 'Lista de clientes selecionados',
+            description: 'Se preenchido, o desconto será disponibilizado apenas para estes clientes',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do cliente"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do cliente'
               }
             },
           discount: {
-            title: "Desconto concedido",
-            type: "object",
+            title: 'Desconto concedido',
+            type: 'object',
             required: [
-              value"
+              value'
               ],
             additionalProperties: false,
             properties: {
               apply_at: {
-                type: "string",
+                type: 'string',
                 enum: [
-                  total",
-                  subtotal",
-                  freight"
+                  total',
+                  subtotal',
+                  freight'
                   ],
-                default: "total",
-                title: "Aplicar desconto em",
-                description: "Em qual valor o desconto deverá ser aplicado no checkout"
+                default: 'total',
+                title: 'Aplicar desconto em',
+                description: 'Em qual valor o desconto deverá ser aplicado no checkout'
                 },
               min_amount: {
-                type: "integer",
+                type: 'integer',
                 minimum: 1,
                 maximum: 999999999,
-                title: "Valor mínimo",
-                description: "Montante mínimo para aplicar o desconto"
+                title: 'Valor mínimo',
+                description: 'Montante mínimo para aplicar o desconto'
                 },
               amount_field: {
-                type: "string",
+                type: 'string',
                 enum: [
-                  total",
-                  subtotal"
+                  total',
+                  subtotal'
                   ],
-                default: "total",
-                title: "Montante a validar",
-                description: "Checar valor mínimo no total ou subtotal do carrinho"
+                default: 'total',
+                title: 'Montante a validar',
+                description: 'Checar valor mínimo no total ou subtotal do carrinho'
                 },
               type: {
-                type: "string",
+                type: 'string',
                 enum: [
-                  percentage",
-                  fixed"
+                  percentage',
+                  fixed'
                   ],
-                default: "fixed",
-                title: "Tipo de desconto",
-                description: "Desconto com valor percentual ou fixo"
+                default: 'fixed',
+                title: 'Tipo de desconto',
+                description: 'Desconto com valor percentual ou fixo'
                 },
               value: {
-                type: "number",
+                type: 'number',
                 minimum: -99999999,
                 maximum: 99999999,
-                title: "Valor do desconto",
-                description: "Valor percentual ou fixo a ser descontado, dependendo to tipo configurado"
+                title: 'Valor do desconto',
+                description: 'Valor percentual ou fixo a ser descontado, dependendo to tipo configurado'
                 }
               }
             },
           product_ids: {
-            title: "Lista de produtos da campanha",
-            description: "Se preenchido, o desconto só será válido se um dos produtos estiver no carrinho",
-            type: "array",
+            title: 'Lista de produtos da campanha',
+            description: 'Se preenchido, o desconto só será válido se um dos produtos estiver no carrinho',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do produto"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do produto'
               }
             },
           excluded_product_ids: {
-            title: "Produtos excluídos",
-            description: "Se preenchido, o desconto será inválido se um dos produtos estiver no carrinho",
-            type: "array",
+            title: 'Produtos excluídos',
+            description: 'Se preenchido, o desconto será inválido se um dos produtos estiver no carrinho',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do produto"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do produto'
               }
             },
           cumulative_discount: {
-            type: "boolean",
+            type: 'boolean',
             default: true,
-            title: "Desconto cumulativo",
-            description: "Se a promoção poderá ser aplicada junto a descontos de pagamento/entrega"
+            title: 'Desconto cumulativo',
+            description: 'Se a promoção poderá ser aplicada junto a descontos de pagamento/entrega'
             }
           }
         }
@@ -310,132 +310,132 @@ const app = {
     },
   product_kit_discounts: {
     schema: {
-      title: "Descontos \"compre junto\"",
-      description: "Aplicar descontos por quantidade ou kits de produto(s). Para importação em massa, verifique a tabela https://bit.ly/2XikNGO",
-      type: "array",
+      title: 'Descontos \'compre junto\'',
+      description: 'Aplicar descontos por quantidade ou kits de produto(s). Para importação em massa, verifique a tabela https://bit.ly/2XikNGO',
+      type: 'array',
       items: {
-        type: "object",
-        title: "Desconto por kit",
+        type: 'object',
+        title: 'Desconto por kit',
         required: [
-          product_ids"
+          product_ids'
           ],
         additionalProperties: false,
         properties: {
           label: {
-            type: "string",
+            type: 'string',
             maxLength: 100,
-            title: "Rótulo",
-            description: "Título (opcional) da promoção"
+            title: 'Rótulo',
+            description: 'Título (opcional) da promoção'
             },
           date_range: {
-            type: "object",
-            title: "Período de validade",
-            description: "Preencha para programar a oferta a datas de início e/ou fim",
+            type: 'object',
+            title: 'Período de validade',
+            description: 'Preencha para programar a oferta a datas de início e/ou fim',
             additionalProperties: false,
             properties: {
               start: {
-                type: "string",
-                format: "date-time",
-                title: "Início"
+                type: 'string',
+                format: 'date-time',
+                title: 'Início'
                 },
               end: {
-                type: "string",
-                format: "date-time",
-                title: "Encerramento"
+                type: 'string',
+                format: 'date-time',
+                title: 'Encerramento'
                 }
               }
             },
           product_ids: {
-            title: "Lista de produtos do kit",
-            description: "Produtos compondo o kit para desconto \"compre junto\" ou \"leve X pague Y\"",
-            type: "array",
+            title: 'Lista de produtos do kit',
+            description: 'Produtos compondo o kit para desconto \'compre junto\' ou \'leve X pague Y\'',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do produto"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do produto'
               }
             },
           min_quantity: {
-            title: "Quantidade mínima no carrinho",
-            description: "Mínimo de itens (total) no carrinho",
-            type: "integer",
+            title: 'Quantidade mínima no carrinho',
+            description: 'Mínimo de itens (total) no carrinho',
+            type: 'integer',
             default: 1,
             minimum: 1,
             maximum: 9999999
             },
           same_product_quantity: {
-            type: "boolean",
-            title: "Checar quantidade de cada item",
-            description: "Aplicar desconto no produto apenas se a quantidade mínima for satisfeita no mesmo item do carrinho"
+            type: 'boolean',
+            title: 'Checar quantidade de cada item',
+            description: 'Aplicar desconto no produto apenas se a quantidade mínima for satisfeita no mesmo item do carrinho'
             },
           check_all_items: {
-            type: "boolean",
+            type: 'boolean',
             default: true,
-            title: "Checar todos os produtos",
-            description: "Se deve haver pelo menos 1 unidade de cada produto no carrinho"
+            title: 'Checar todos os produtos',
+            description: 'Se deve haver pelo menos 1 unidade de cada produto no carrinho'
             },
           discount_lowest_price: {
-            type: "boolean",
-            title: "Descontar menor preço",
-            description: "Aplicar desconto com valor igual ao menor preço entre os produtos selecionados"
+            type: 'boolean',
+            title: 'Descontar menor preço',
+            description: 'Aplicar desconto com valor igual ao menor preço entre os produtos selecionados'
             },
           discount_kit_subtotal: {
-            type: "boolean",
-            title: "Descontar subtotal do kit",
-            description: "Aplicar desconto em função do subtotal somando apenas os produtos do kit"
+            type: 'boolean',
+            title: 'Descontar subtotal do kit',
+            description: 'Aplicar desconto em função do subtotal somando apenas os produtos do kit'
             },
           customer_ids: {
-            title: "Lista de clientes selecionados",
-            description: "Se preenchido, o desconto será disponibilizado apenas para estes clientes",
-            type: "array",
+            title: 'Lista de clientes selecionados',
+            description: 'Se preenchido, o desconto será disponibilizado apenas para estes clientes',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do cliente"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do cliente'
               }
             },
           discount: {
-            title: "Desconto predefinido",
-            type: "object",
+            title: 'Desconto predefinido',
+            type: 'object',
             required: [
-              value"
+              value'
               ],
             additionalProperties: false,
             properties: {
               apply_at: {
-                type: "string",
+                type: 'string',
                 enum: [
-                  total",
-                  subtotal",
-                  freight"
+                  total',
+                  subtotal',
+                  freight'
                   ],
-                default: "total",
-                title: "Aplicar desconto em",
-                description: "Em qual valor o desconto deverá ser aplicado no checkout"
+                default: 'total',
+                title: 'Aplicar desconto em',
+                description: 'Em qual valor o desconto deverá ser aplicado no checkout'
                 },
               min_amount: {
-                type: "integer",
+                type: 'integer',
                 minimum: 1,
                 maximum: 999999999,
-                title: "Valor mínimo",
-                description: "Montante mínimo para aplicar o desconto"
+                title: 'Valor mínimo',
+                description: 'Montante mínimo para aplicar o desconto'
                 },
               type: {
-                type: "string",
+                type: 'string',
                 enum: [
-                  percentage",
-                  fixed"
+                  percentage',
+                  fixed'
                   ],
-                default: "fixed",
-                title: "Tipo de desconto",
-                description: "Desconto com valor percentual ou fixo"
+                default: 'fixed',
+                title: 'Tipo de desconto',
+                description: 'Desconto com valor percentual ou fixo'
                 },
               value: {
-                type: "number",
+                type: 'number',
                 minimum: -99999999,
                 maximum: 99999999,
-                title: "Valor do desconto",
-                description: "Valor percentual ou fixo a ser descontado, dependendo to tipo configurado"
+                title: 'Valor do desconto',
+                description: 'Valor percentual ou fixo a ser descontado, dependendo to tipo configurado'
                 }
               }
             }
@@ -446,76 +446,76 @@ const app = {
     },
   freebies_rules: {
     schema: {
-      title: "Brindes",
-      description: "Adicionar produtos a preço zero com filtro por subtotal",
-      type: "array",
+      title: 'Brindes',
+      description: 'Adicionar produtos a preço zero com filtro por subtotal',
+      type: 'array',
       items: {
-        type: "object",
-        title: "Regra para disponibilizar brindes",
+        type: 'object',
+        title: 'Regra para disponibilizar brindes',
         required: [
-          product_ids"
+          'product_ids'
           ],
         additionalProperties: false,
         properties: {
           label: {
-            type: "string",
+            type: 'string',
             maxLength: 100,
-            title: "Rótulo",
-            description: "Título (opcional) da promoção"
+            title: 'Rótulo',
+            description: 'Título (opcional) da promoção'
             },
           date_range: {
-            type: "object",
-            title: "Período de validade",
-            description: "Preencha para programar a oferta a datas de início e/ou fim",
+            type: 'object',
+            title: 'Período de validade',
+            description: 'Preencha para programar a oferta a datas de início e/ou fim',
             additionalProperties: false,
             properties: {
               start: {
-                type: "string",
-                format: "date-time",
-                title: "Início"
+                type: 'string',
+                format: 'date-time',
+                title: 'Início'
                 },
               end: {
-                type: "string",
-                format: "date-time",
-                title: "Encerramento"
+                type: 'string',
+                format: 'date-time',
+                title: 'Encerramento'
                 }
               }
             },
           product_ids: {
-            title: "Produto(s) brinde",
-            description: "Lista de produtos fornecidos como prêmio",
-            type: "array",
+            title: 'Produto(s) brinde',
+            description: 'Lista de produtos fornecidos como prêmio',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do produto"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do produto'
               }
             },
           min_subtotal: {
-            type: "integer",
+            type: 'integer',
             minimum: 0,
             maximum: 999999999,
-            title: "Valor mínimo",
-            description: "Subtotal mínimo para disponibilizar o brinde"
+            title: 'Valor mínimo',
+            description: 'Subtotal mínimo para disponibilizar o brinde'
             },
           customer_ids: {
-            title: "Lista de clientes selecionados",
-            description: "Se preenchido, os brindes serão disponibilizados apenas para estes clientes",
-            type: "array",
+            title: 'Lista de clientes selecionados',
+            description: 'Se preenchido, os brindes serão disponibilizados apenas para estes clientes',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do cliente"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do cliente'
               }
             },
           check_product_ids: {
-            title: "Lista de produtos da campanha",
-            description: "Se preenchido, o brinde só será aplicado se um dos produtos estiver no carrinho",
-            type: "array",
+            title: 'Lista de produtos da campanha',
+            description: 'Se preenchido, o brinde só será aplicado se um dos produtos estiver no carrinho',
+            type: 'array',
             items: {
-              type: "string",
-              pattern: "^[a-f0-9]{24}$",
-              title: "ID do produto"
+              type: 'string',
+              pattern: '^[a-f0-9]{24}$',
+              title: 'ID do produto'
               }
             }
           }
