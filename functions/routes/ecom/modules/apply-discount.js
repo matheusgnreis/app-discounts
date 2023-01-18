@@ -133,6 +133,7 @@ exports.post = ({ appSdk, admin }, req, res) => {
             productIds.length <= 4 &&
             buyTogether.length < 300
           ) {
+            console.log('Get body to test', JSON.stringify(kitDiscount))
             const baseProductId = params.items[0].product_id
             if (productIds.indexOf(baseProductId) === -1) {
               return
