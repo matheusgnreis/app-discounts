@@ -74,6 +74,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
             }
           }
 
+          rule.originalDiscount = rule.discount
           rule.discount = {
             ...rule.discount,
             type: 'fixed',
