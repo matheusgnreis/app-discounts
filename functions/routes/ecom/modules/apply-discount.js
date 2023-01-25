@@ -165,6 +165,7 @@ exports.post = ({ appSdk, admin }, req, res) => {
         }
 
         const discount = Object.assign({}, kitDiscount.discount)
+        console.log('Discount before', discount)
         if (kitDiscount.min_quantity > 0) {
           // check total items quantity
           if (kitDiscount.same_product_quantity) {
