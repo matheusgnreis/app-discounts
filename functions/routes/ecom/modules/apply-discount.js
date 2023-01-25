@@ -159,6 +159,7 @@ exports.post = ({ appSdk, admin }, req, res) => {
                   value: discountValue
                 }
               })
+              delete kitDiscount.originalDiscount
             }
           }
         }
@@ -206,6 +207,7 @@ exports.post = ({ appSdk, admin }, req, res) => {
               )
             })
           } else {
+            console.log('Get discount', discount)
             addDiscount(discount, `KIT-${(index + 1)}`, kitDiscount.label)
           }
           discountedItemIds = discountedItemIds.concat(kitItems.map(item => item.product_id))
