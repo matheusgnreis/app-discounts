@@ -93,7 +93,6 @@ exports.post = ({ appSdk, admin }, req, res) => {
     }
 
     const kitDiscounts = getValidDiscountRules(config.product_kit_discounts, params, params.items)
-    console.log('Kit discount test', JSON.stringify(kitDiscounts))
       .sort((a, b) => {
         if (!Array.isArray(a.product_ids) || !a.product_ids.length) {
           if (Array.isArray(b.product_ids) && b.product_ids.length) {
@@ -135,7 +134,6 @@ exports.post = ({ appSdk, admin }, req, res) => {
             productIds.length <= 4 &&
             buyTogether.length < 300
           ) {
-            const isKitDiscountOnly = kitDiscount.discount_kit_subtotal || kitDiscount.discount_lowest_price || false
             console.log('Get body to test', JSON.stringify(kitDiscount))
             const baseProductId = params.items[0].product_id
             if (productIds.indexOf(baseProductId) === -1) {
@@ -151,12 +149,14 @@ exports.post = ({ appSdk, admin }, req, res) => {
                 buyTogetherProducts[productId] = perItemQuantity
               }
             })
+            const discountType = kitDiscount.originalDiscount.type || kitDiscount.discount.type
+            const discountValue = kitDiscount.originalDiscount.value || kitDiscount.discount.value
             if (Object.keys(buyTogetherProducts).length) {
               buyTogether.push({
                 products: buyTogetherProducts,
                 discount: {
-                  type: kitDiscount.discount.type,
-                  value: kitDiscount.discount.value
+                  type: discountType,
+                  value: discountValue
                 }
               })
             }
