@@ -182,7 +182,12 @@ exports.post = ({ appSdk, admin }, req, res) => {
               return
             }
             if (discount.type === 'fixed' && kitDiscount.cumulative_discount !== false) {
+              console.log('Discount fixed before', discount)
+              console.log('Quantidade total', totalQuantity)
+              console.log('Quantidade minima', kitDiscount.min_quantity)
+              console.log('Razão', Math.floor(totalQuantity / kitDiscount.min_quantity))
               discount.value *= Math.floor(totalQuantity / kitDiscount.min_quantity)
+              console.log('Discount fixed after', discount)
             }
           }
         }
