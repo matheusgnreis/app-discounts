@@ -394,6 +394,13 @@ const app = {
               title: 'ID do cliente'
               }
             },
+            cumulative_discount: {
+              type: 'boolean',
+              default: true,
+              title: 'Desconto cumulativo',
+              description: 'Se a promoção poderá ser aplicada junto a descontos de pagamento/entrega'
+              }
+            },
           discount: {
             title: 'Desconto predefinido',
             type: 'object',
