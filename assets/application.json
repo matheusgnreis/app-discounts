@@ -290,6 +290,12 @@
                 "title": "ID do cliente"
               }
             },
+            "cumulative_discount": {
+              "type": "boolean",
+              "default": true,
+              "title": "Desconto cumulativo",
+              "description": "Se a promoção poderá ser aplicada junto a outros descontos."
+            },
             "discount": {
               "title": "Desconto predefinido",
               "type": "object",
