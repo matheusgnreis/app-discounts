@@ -384,6 +384,11 @@ const app = {
             title: 'Descontar subtotal do kit',
             description: 'Aplicar desconto em função do subtotal somando apenas os produtos do kit'
             },
+            cumulative_discount: {
+              type: 'boolean',
+              title: 'Desconto cumulativo',
+              description: 'Se a promoção poderá ser aplicada junto a outros descontos.'
+              },
           customer_ids: {
             title: 'Lista de clientes selecionados',
             description: 'Se preenchido, o desconto será disponibilizado apenas para estes clientes',
@@ -394,12 +399,6 @@ const app = {
               title: 'ID do cliente'
               }
             },
-            cumulative_discount: {
-              type: 'boolean',
-              default: true,
-              title: 'Desconto cumulativo',
-              description: 'Se a promoção poderá ser aplicada junto a outros descontos.'
-              },
           discount: {
             title: 'Desconto predefinido',
             type: 'object',
