@@ -134,7 +134,6 @@ exports.post = ({ appSdk, admin }, req, res) => {
             productIds.length <= 4 &&
             buyTogether.length < 300
           ) {
-            console.log('Get body to test', JSON.stringify(kitDiscount))
             const baseProductId = params.items[0].product_id
             if (productIds.indexOf(baseProductId) === -1) {
               return
@@ -165,7 +164,6 @@ exports.post = ({ appSdk, admin }, req, res) => {
         }
 
         const discount = Object.assign({}, kitDiscount.discount)
-        console.log('Discount before', discount)
         if (kitDiscount.min_quantity > 0) {
           // check total items quantity
           if (kitDiscount.same_product_quantity) {
@@ -182,12 +180,7 @@ exports.post = ({ appSdk, admin }, req, res) => {
               return
             }
             if (discount.type === 'fixed' && kitDiscount.cumulative_discount !== false) {
-              console.log('Discount fixed before', discount)
-              console.log('Quantidade total', totalQuantity)
-              console.log('Quantidade minima', kitDiscount.min_quantity)
-              console.log('Razão', Math.floor(totalQuantity / kitDiscount.min_quantity))
               discount.value *= Math.floor(totalQuantity / kitDiscount.min_quantity)
-              console.log('Discount fixed after', discount)
             }
           }
         }
@@ -213,7 +206,6 @@ exports.post = ({ appSdk, admin }, req, res) => {
               )
             })
           } else {
-            console.log('Get discount', discount)
             addDiscount(discount, `KIT-${(index + 1)}`, kitDiscount.label)
           }
           discountedItemIds = discountedItemIds.concat(kitItems.map(item => item.product_id))
