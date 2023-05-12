@@ -70,7 +70,11 @@ const getValidDiscountRules = (discountRules, params, items) => {
             if (rule.discount.type === 'percentage') {
               value *= rule.discount.value / 100
             } else {
-              value += rule.discount.value
+              if (rule.discount_kit_subtotal) {
+                value = rule.discount.value
+              } else {
+                value += rule.discount.value
+              }
             }
           }
 
