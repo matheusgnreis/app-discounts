@@ -165,21 +165,21 @@ const app = {
             },
             date_range: {
               type: 'object',
-            title: 'Período de validade',
-            description: 'Preencha para programar a oferta a datas de início e/ou fim',
-            additionalProperties: false,
-            properties: {
-              start: {
-                type: 'string',
-                format: 'date-time',
-                title: 'Início'
-                },
-              end: {
-                type: 'string',
-                format: 'date-time',
-                title: 'Encerramento'
+              title: 'Período de validade',
+              description: 'Preencha para programar a oferta a datas de início e/ou fim',
+              additionalProperties: false,
+              properties: {
+                start: {
+                  type: 'string',
+                  format: 'date-time',
+                  title: 'Início'
+                  },
+                end: {
+                  type: 'string',
+                  format: 'date-time',
+                  title: 'Encerramento'
+                  }
                 }
-              }
             },
           discount_coupon: {
             type: 'string',
@@ -287,6 +287,16 @@ const app = {
               title: 'ID do produto'
               }
             },
+            category_ids: {
+              title: 'Lista de categorias da campanha',
+              description: 'Se preenchido, o desconto só será válido se um dos produtos tiver a categoria estiver no carrinho',
+              type: 'array',
+              items: {
+                type: 'string',
+                pattern: '^[a-f0-9]{24}$',
+                title: 'ID da categoria'
+                }
+              },
           excluded_product_ids: {
             title: 'Produtos excluídos',
             description: 'Se preenchido, o desconto será inválido se um dos produtos estiver no carrinho',
@@ -355,6 +365,16 @@ const app = {
               title: 'ID do produto'
               }
             },
+            category_ids: {
+              title: 'Lista de categorias da campanha',
+              description: 'Se preenchido, o desconto só será válido se um dos produtos tiver a categoria e estiver no carrinho',
+              type: 'array',
+              items: {
+                type: 'string',
+                pattern: '^[a-f0-9]{24}$',
+                title: 'ID da categoria'
+                }
+              },
           min_quantity: {
             title: 'Quantidade mínima no carrinho',
             description: 'Mínimo de itens (total) no carrinho',
