@@ -299,7 +299,7 @@ exports.post = ({ appSdk, admin }, req, res) => {
     if (discountRules.length) {
       const { discountRule, discountMatchEnum } = matchDiscountRule(discountRules, params)
       if (discountRule) {
-        if (!checkCampaignProducts(discountRule.product_ids, params)) {
+        if (!checkCampaignProducts(discountRule.product_ids, params, discountRule.category_ids)) {
           return res.send({
             available_extra_discount: response.available_extra_discount,
             invalid_coupon_message: params.lang === 'pt_br'

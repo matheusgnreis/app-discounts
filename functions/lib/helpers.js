@@ -34,11 +34,11 @@ const checkOpenPromotion = rule => {
 }
 
 // check for category
-const checkCategoryId = item => {
+const checkCategoryId = (campaignCategories, item) => {
   const { categories } = item
   if (categories && categories.length) {
     categories.some(category => {
-      return (!rule.category_ids.length || rule.category_ids.indexOf(category._id) > -1)
+      return (!campaignCategories.length || campaignCategories.indexOf(category._id) > -1)
     }) 
   }
   return true
@@ -61,7 +61,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
         if (rule.discount_lowest_price) {
           items.forEach(item => {
             const price = ecomUtils.price(item)
-            if (price > 0 && checkProductId(item) && (!value || value > price) && checkCategoryId(item)) {
+            if (price > 0 && checkProductId(item) && (!value || value > price) && checkCategoryId(rule.category_ids, item)) {
               value = price
             }
           })
@@ -159,13 +159,13 @@ const matchDiscountRule = (discountRules, params) => {
   }
 }
 
-const checkCampaignProducts = (campaignProducts, params) => {
+const checkCampaignProducts = (campaignProducts, params, campaignCategories) => {
   if (Array.isArray(campaignProducts) && campaignProducts.length) {
     // must check at least one campaign product on cart
     let hasProductMatch
     if (params.items && params.items.length) {
       for (let i = 0; i < campaignProducts.length; i++) {
-        if (params.items.find(item => item.quantity && item.product_id === campaignProducts[i]) && checkCategoryId(item)) {
+        if (params.items.find(item => item.quantity && item.product_id === campaignProducts[i]) && checkCategoryId(campaignCategories, item)) {
           hasProductMatch = true
           break
         }
