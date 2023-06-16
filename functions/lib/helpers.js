@@ -54,7 +54,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
         return false
       }
 
-      if (Array.isArray(rule.product_ids) && Array.isArray(items)) {
+      if ((Array.isArray(rule.product_ids) || Array.isArray(rule.category_ids)) && Array.isArray(items)) {
         const checkProductId = item => {
           return (!rule.product_ids.length || rule.product_ids.indexOf(item.product_id) > -1)
         }
@@ -71,7 +71,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
           value = 0
           items.forEach(item => {
             const price = ecomUtils.price(item)
-            if (price > 0 && checkProductId(item) && checkCategoryId(item)) {
+            if (price > 0 && checkProductId(item) && checkCategoryId(rule.category_ids, item)) {
               value += price * item.quantity
             }
           })
@@ -162,12 +162,25 @@ const matchDiscountRule = (discountRules, params) => {
 }
 
 const checkCampaignProducts = (campaignProducts, params, campaignCategories) => {
+  let hasProductMatch
   if (Array.isArray(campaignProducts) && campaignProducts.length) {
     // must check at least one campaign product on cart
-    let hasProductMatch
     if (params.items && params.items.length) {
       for (let i = 0; i < campaignProducts.length; i++) {
         if (params.items.find(item => item.quantity && item.product_id === campaignProducts[i]) && checkCategoryId(campaignCategories, item)) {
+          hasProductMatch = true
+          break
+        }
+      }
+    }
+    if (!hasProductMatch) {
+      return false
+    }
+  } else if (Array.isArray(campaignCategories) && campaignCategories.length) {
+    // must check at least one campaign product on cart
+    if (params.items && params.items.length) {
+      for (let i = 0; i < campaignCategories.length; i++) {
+        if (params.items.find(item => item.quantity && checkCategoryId(campaignCategories, item))) {
           hasProductMatch = true
           break
         }
