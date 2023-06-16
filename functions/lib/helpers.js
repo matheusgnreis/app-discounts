@@ -38,9 +38,9 @@ const checkCategoryId = (campaignCategories, item) => {
   console.log('Categorias que chegaram', JSON.stringify(campaignCategories))
   console.log('item', JSON.stringify(item))
   const { categories } = item
-  if (categories && categories.length) {
+  if (Array.isArray(categories) && categories.length && Array.isArray(campaignCategories) && campaignCategories.length) {
     categories.some(category => {
-      return (!campaignCategories.length || campaignCategories.indexOf(category._id) > -1)
+      return (campaignCategories.indexOf(category._id) > -1)
     }) 
   }
   return false
