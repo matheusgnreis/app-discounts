@@ -33,6 +33,17 @@ const checkOpenPromotion = rule => {
     (!Array.isArray(rule.customer_ids) || !rule.customer_ids.length)
 }
 
+// check for category
+const checkCategoryId = item => {
+  const { categories } = item
+  if (categories && categories.length) {
+    categories.some(category => {
+      return (!rule.category_ids.length || rule.category_ids.indexOf(category._id) > -1)
+    }) 
+  }
+  return true
+}
+
 const getValidDiscountRules = (discountRules, params, items) => {
   if (Array.isArray(discountRules) && discountRules.length) {
     // validate rules objects
@@ -50,7 +61,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
         if (rule.discount_lowest_price) {
           items.forEach(item => {
             const price = ecomUtils.price(item)
-            if (price > 0 && checkProductId(item) && (!value || value > price)) {
+            if (price > 0 && checkProductId(item) && (!value || value > price) && checkCategoryId(item)) {
               value = price
             }
           })
@@ -58,7 +69,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
           value = 0
           items.forEach(item => {
             const price = ecomUtils.price(item)
-            if (price > 0 && checkProductId(item)) {
+            if (price > 0 && checkProductId(item) && checkCategoryId(item)) {
               value += price * item.quantity
             }
           })
@@ -73,7 +84,7 @@ const getValidDiscountRules = (discountRules, params, items) => {
               if (rule.discount_kit_subtotal) {
                 value = rule.discount.value
               } else {
-                value += rule.discount.value
+                value = Math.min(value, rule.discount.value)
               }
             }
           }
@@ -154,7 +165,7 @@ const checkCampaignProducts = (campaignProducts, params) => {
     let hasProductMatch
     if (params.items && params.items.length) {
       for (let i = 0; i < campaignProducts.length; i++) {
-        if (params.items.find(item => item.quantity && item.product_id === campaignProducts[i])) {
+        if (params.items.find(item => item.quantity && item.product_id === campaignProducts[i]) && checkCategoryId(item)) {
           hasProductMatch = true
           break
         }
