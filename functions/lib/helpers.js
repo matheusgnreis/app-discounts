@@ -43,7 +43,7 @@ const checkCategoryId = (campaignCategories, item) => {
       return (campaignCategories.indexOf(category._id) > -1)
     }) 
   }
-  return false
+  return true
 }
 
 const getValidDiscountRules = (discountRules, params, items) => {
